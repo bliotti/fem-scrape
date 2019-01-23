@@ -1,14 +1,17 @@
 localStorage.setItem('video_urls', '[]')
-chrome.runtime.onMessage.addListener(function(request, sender) {
-  switch (request.action) {
-    case 'ADD_VIDEO_URL':
-      const urls = JSON.parse(localStorage.getItem('video_urls'))
-      urls.push(request.payload)
-      console.log(urls)
-      localStorage.setItem('video_urls', JSON.stringify(urls))
-      message.innerText = JSON.stringify(urls)
-    case 'OPEN_TAB':
-      chrome.tabs.create({ url: request.payload, active: false })
+chrome.runtime.onMessage.addListener(function(request) {
+  if (request.action === 'ADD_VIDEO_URL') {
+    const urls = JSON.parse(localStorage.getItem('video_urls'))
+    urls.push(request.payload)
+    localStorage.setItem('video_urls', JSON.stringify(urls))
+    let str = ''
+    urls.map(x => {
+      str += x + '\n'
+    })
+    message.innerText = str
+  } else if (request.action === 'OPEN_TAB') {
+    console.log(request)
+    chrome.tabs.create({ url: request.payload, active: false })
   }
 })
 

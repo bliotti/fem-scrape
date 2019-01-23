@@ -1,6 +1,6 @@
 function getLinkUrls() {
   const arr = document.querySelectorAll('a')
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 20; i++) {
     if (arr[i]) {
       openNewBackgroundTab(arr[i].href)
     } else {
@@ -12,7 +12,8 @@ function getLinkUrls() {
 function openNewBackgroundTab(payload) {
   chrome.runtime.sendMessage({
     action: 'OPEN_TAB',
-    payload
+    payload,
+    date: new Date().getTime()
   })
 }
 
@@ -24,7 +25,6 @@ chrome.runtime.onMessage.addListener(function(request) {
     case 'ADD_VIDEO_URL':
       const urls = JSON.parse(localStorage.getItem('video_urls'))
       urls.push(request.payload)
-      console.log(request.payload)
       localStorage.setItem('video_urls', JSON.stringify(urls))
   }
 })

@@ -1,6 +1,6 @@
 {
   "name": "download videos",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "steal all the videos",
   "permissions": [
@@ -17,7 +17,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
+      "matches": ["<all_urls>"],
       "js": ["getVideo.js"],
       "run_at": "document_end",
       "all_frames": false,
