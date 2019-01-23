@@ -1,0 +1,27 @@
+{
+  "name": "download videos",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "steal all the videos",
+  "permissions": [
+    "tabs",
+    "notifications",
+    "activeTab",
+    "http://*/*",
+    "https://*/*",
+    "storage"
+  ],
+  "browser_action": {
+    "default_title": "video-downloader",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["getVideo.js"],
+      "run_at": "document_start",
+      "all_frames": false,
+      "match_about_blank": true
+    }
+  ]
+}
