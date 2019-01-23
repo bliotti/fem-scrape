@@ -4,8 +4,9 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     case 'ADD_VIDEO_URL':
       const urls = JSON.parse(localStorage.getItem('video_urls'))
       urls.push(request.payload)
-      console.log(request.payload)
+      console.log(urls)
       localStorage.setItem('video_urls', JSON.stringify(urls))
+      message.innerText = JSON.stringify(urls)
     case 'OPEN_TAB':
       chrome.tabs.create({ url: request.payload, active: false })
   }
@@ -13,7 +14,6 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 
 function onWindowLoad() {
   var message = document.querySelector('#message')
-
   chrome.tabs.executeScript(
     null,
     {

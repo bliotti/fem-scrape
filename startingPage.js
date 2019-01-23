@@ -1,7 +1,6 @@
 function getLinkUrls() {
   const arr = document.querySelectorAll('a')
-  const newArr = []
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 3; i++) {
     if (arr[i]) {
       openNewBackgroundTab(arr[i].href)
     } else {

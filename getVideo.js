@@ -5,12 +5,7 @@ function getVideoUrl() {
   //   return newArr.toString()
   return JSON.stringify(Math.random())
 }
-
-chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.runtime.sendMessage({
-    action: 'ADD_VIDEO_URL',
-    payload: getVideoUrl()
-  })
+chrome.runtime.sendMessage({
+  action: 'ADD_VIDEO_URL',
+  payload: getVideoUrl()
 })
-
-console.log('gvghjvuytcrtexert')
